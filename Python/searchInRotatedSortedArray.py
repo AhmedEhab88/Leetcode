@@ -11,7 +11,7 @@ class Solution:
             return right
         elif left != -1:
             return left
-        else
+        else:
             return -1
 
     def binarySearch(self, left, right, nums: List[int], target):
