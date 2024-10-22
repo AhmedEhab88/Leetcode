@@ -30,6 +30,8 @@ class Solution:
                 countS[s[r]] = 1 + countS.get(s[r], 0)
 
             if self.is_satisfied(countT, countS):
+                while l < r and s[l] not in countT:
+                    l += 1
                 if r - l + 1 < minimum:
                     res = s[l : r + 1]
                     minimum = r - l + 1
@@ -37,12 +39,10 @@ class Solution:
                 if s[l] in countS:
                     countS[s[l]] -= 1
                     l += 1
-                while l < r and s[l] not in countT:
-                    l += 1
         return res
 
 
 obj = Solution()
-# print(obj.minWindow("ADOBECODEBANC", "ABC"))
+print(obj.minWindow("ADOBECODEBANC", "ABC"))
 # print(obj.minWindow("a", "a"))
 print(obj.minWindow("ab", "b"))
