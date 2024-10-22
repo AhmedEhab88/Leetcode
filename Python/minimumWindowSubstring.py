@@ -12,20 +12,16 @@ class Solution:
     def minWindow(self, s: str, t: str) -> str:
         if len(t) > len(s):
             return ""
-        # if len(s) == 1:
-        #     if s[0] == t[0]:
-        #         return s[0]
-        #     else:
-        #         return ""
+        
         countT = {}
         for char in t:
-            countT[char] = 1 + countT.get(t, 0)
+            countT[char] = 1 + countT.get(char, 0)
 
         minimum = math.inf
-        l = 0
+        l = r =  0
         countS = {}
         res = ""
-        for r in range(len(s)):
+        while r < len(s):
             if s[r] in countT:
                 countS[s[r]] = 1 + countS.get(s[r], 0)
 
@@ -39,10 +35,14 @@ class Solution:
                 if s[l] in countS:
                     countS[s[l]] -= 1
                     l += 1
+                    continue
+            r += 1
         return res
 
 
 obj = Solution()
 print(obj.minWindow("ADOBECODEBANC", "ABC"))
 # print(obj.minWindow("a", "a"))
-print(obj.minWindow("ab", "b"))
+# print(obj.minWindow("ab", "b"))
+# print(obj.minWindow("aa", "aa"))
+# print(obj.minWindow("bba", "ab"))
